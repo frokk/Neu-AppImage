@@ -1,2 +1,2 @@
-# Neu-Packager
-Package Neutralino Application Into Various Formats
+# Neu-AppImage
+Package Neutralino Application Into AppImage Format
