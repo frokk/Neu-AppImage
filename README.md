@@ -53,7 +53,7 @@ const AppImage = require('neu-appimage');
 `options` is an object that can contain following fields:
 
 * `programName` - Name of the program (ex - `"FireFox"`).
-* `genericNamen` - Generic Name of the program (ex - `"Web Browser"`).
+* `genericName` - Generic Name of the program (ex - `"Web Browser"`).
 * `description` - Description of the program (ex - `"Free and open-source web browser"`).
 * `icon` - Path to the icon file (`.png`) in 512x512 or 256x256 resolution (ex - `"/path/to/icon.png"`).
 * `categories` - Array of Strings Containing Category of the program (ex - `["Utility", "Network"]`).
