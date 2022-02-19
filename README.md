@@ -26,7 +26,8 @@ You can directly build your AppImage from command line, available options are:
 --working-dir      <string>      YES       The working directory to run the program in
 --arch             <string>      NO        Program Architecture (x64 or x32)
 --out-dir          <string>      NO        Path to directory to save AppImage in
---list-categories                YES       List Available Categories. (default: false)
+--log                            YES       Log the output of AppImage Tool.
+--list-categories                YES       List Available Categories.
 -V, --version                    YES       Output the version number
 -h, --help                       YES       Display help for command
 ```
