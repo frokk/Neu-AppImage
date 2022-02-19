@@ -4,14 +4,17 @@ const pkgJSON = require('../package.json');
 const process = require('process');
 const path = require('path');
 const fs = require('fs');
-const { error } = require('../src/utils');
-const { exit } = require('process');
 
 const AppImage = require('../src/index');
 
 function argumentNotPassed(arg) {
 	program.outputHelp();
 	error(`Argument "${arg}" Not Specified.`)
+}
+
+function error(msg) {
+	console.error(`\nError: ${msg}`);
+	process.exit(1);
 }
 
 program
@@ -50,7 +53,7 @@ if (options.listCategories) {
   11. Settings
   12. System
   13. Utility`);
-	exit(0);
+	process.exit(0);
 } else {
 	if (!options.exe) argumentNotPassed("--exe")
 	if (!options.res) argumentNotPassed("--res")
@@ -123,7 +126,7 @@ if (result.code != AppImage.code.SUCCESS) {
 		}
 	}
 	console.error(msg);
-	exit(1);
+	process.exit(1);
 } else {
 	console.log(`Success! AppImage Created At ${result.text}`);
 }
