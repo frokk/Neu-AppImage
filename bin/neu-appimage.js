@@ -32,6 +32,7 @@ program
 	.option('--working-dir <string>', 'The working directory to run the program in')
 	.option('--arch <string>', 'Program Architecture (x64 or x32)')
 	.option('--out-dir <string>', 'Path to directory to save AppImage in')
+	.option('--log', 'Log the output of AppImage Tool', false)
 	.option('--list-categories', 'List Available Categories.', false);
 
 program.parse();
@@ -110,7 +111,7 @@ myAppImage.options = {
 	categories: categories,
 	icon: path.resolve(options.icon),
 	arch: options.arch,
-	showAppImgToolOutput: false
+	showAppImgToolOutput: options.log
 }
 
 const result = myAppImage.build();
