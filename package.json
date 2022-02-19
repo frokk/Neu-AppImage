@@ -1,0 +1,29 @@
+{
+	"name": "neu-appimage",
+	"version": "0.1.0",
+	"description": "Package Neutralino Application Into AppImage Format",
+	"main": "src/index.js",
+	"bin": {
+		"neu-packager": "bin/neu-appimage.js"
+	},
+	"scripts": {
+		"test": "node bin/neu-appimage.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DEVLOPRR/Neu-AppImage.git"
+	},
+	"keywords": [
+		"neutralinojs",
+		"appimage"
+	],
+	"author": "ADITYA MISHRA",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DEVLOPRR/Neu-AppImage/issues"
+	},
+	"homepage": "https://github.com/DEVLOPRR/Neu-AppImage#readme",
+	"dependencies": {
+		"commander": "^9.0.0"
+	}
+}
