@@ -1,6 +1,6 @@
 {
 	"name": "neu-appimage",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"description": "Package Neutralino Application Into AppImage Format",
 	"main": "src/index.js",
 	"bin": {
