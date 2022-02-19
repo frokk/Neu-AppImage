@@ -144,9 +144,9 @@ class AppImage {
 			let appimageToolPath;
 		
 			if (currentOSArch == 'x64') {
-				appimageToolPath = path.resolve('./', 'appimagetool/appimagetool-x86_64.AppImage');
+				appimageToolPath = path.resolve(__dirname, '../appimagetool/appimagetool-x86_64.AppImage');
 			} else if (currentOSArch == 'x32' || currentOSArch == 'ia32') {
-				appimageToolPath = path.resolve('./', 'appimagetool/appimagetool-i686.AppImage');
+				appimageToolPath = path.resolve(__dirname, '../appimagetool/appimagetool-i686.AppImage');
 			} else {
 				removeTemp(this._tempDir);
 				return {
