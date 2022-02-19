@@ -15,7 +15,8 @@
 	},
 	"keywords": [
 		"neutralinojs",
-		"appimage"
+		"appimage",
+		"appimage-builder"
 	],
 	"author": "ADITYA MISHRA",
 	"license": "MIT",
