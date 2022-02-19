@@ -3,8 +3,6 @@ Package Neutralino Application Into AppImage Format
 
 ---
 
-## CLI
-
 ## From the Command Line
 
 Running Neu AppImage from the command line has this basic form:
