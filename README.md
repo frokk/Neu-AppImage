@@ -37,7 +37,7 @@ You can directly build your AppImage from command line, available options are:
 ## API
 
 ```javascript
-const AppImage = require('neu-appimage');
+const { AppImage, STATUS_CODE } = require('neu-appimage');
 ```
 
 ### `new AppImage(executable, resource, files, outdir, options)`
@@ -56,6 +56,7 @@ const AppImage = require('neu-appimage');
 * `genericName` - Generic Name of the program (ex - `"Web Browser"`).
 * `description` - Description of the program (ex - `"Free and open-source web browser"`).
 * `icon` - Path to the icon file (`.png`) in 512x512 or 256x256 resolution (ex - `"/path/to/icon.png"`).
+* `version` - Version of your program (ex - 0.3.9-beta or 1.3).
 * `categories` - Array of Strings Containing Category of the program (ex - `["Utility", "Network"]`).
 * These are the available `categories`
     - Audio
@@ -72,18 +73,18 @@ const AppImage = require('neu-appimage');
     - System
     - Utility
 * `workingDir` - The working directory to run the program in (ex - `"~/"`).
-* `arch` - Architecture of your program which the AppImage will inherit (only `x64` & `x32` are supported currently) (ex - `"x64"`).
+* `arch` - Architecture of your program which the AppImage will inherit (only `x86_64` & `i386` are supported currently) (ex - `"x86_64"`).
 * `showAppImgToolOutput` - if true, output of the [AppImage Tool](https://github.com/AppImage/AppImageKit) will be showed on console (can be useful for debugging if command fails) (ex - `false`).
 
 ### `myAppImageInstance.build()`
 Builds the AppImage & returns Object containing information related to Build
 
-`code` - Return Code is `AppImage.code.SUCCESS` if AppImage Was Created Successfully else it can return:
-* `AppImage.code.PATH_NOT_FOUND` - If a File/Folder doesn't Exist.
-* `AppImage.code.UNSUPPORTED_OS_ARCHITECTURE` - If the machine running the code is not `x64` or `x32` Bit.
-* `AppImage.code.UNSUPPORTED_ARCHITECTURE` - If the `arch` property in `options` is not `x64` or `x32`.
-* `AppImage.code.UNSUPPORTED_OS` - If the machine running the code is not Linux.
-* `AppImage.code.UNKNOWN` - If the error is Unknown.
+`code` - Return Code is `STATUS_CODE.SUCCESS` if AppImage Was Created Successfully else it can return:
+* `STATUS_CODE.PATH_NOT_FOUND` - If a File/Folder doesn't Exist.
+* `STATUS_CODE.UNSUPPORTED_OS_ARCHITECTURE` - If the machine running the code is not `x64` or `x32` Bit.
+* `STATUS_CODE.UNSUPPORTED_ARCHITECTURE` - If the `arch` property in `options` is not `x64` or `x32`.
+* `STATUS_CODE.UNSUPPORTED_OS` - If the machine running the code is not Linux.
+* `STATUS_CODE.UNKNOWN` - If the error is Unknown.
 
 `text` - Path to the generated AppImage if successfully created one, else Description of the Error Occured.
 
