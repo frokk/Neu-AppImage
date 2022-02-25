@@ -22,6 +22,7 @@ You can directly build your AppImage from command line, available options are:
 --generic-name     <string>      YES       Generic Name Of The Program
 --description      <string>      NO        Description Of The Program
 --icon             <string>      NO        Path To The Program Icon
+--version          <string>      YES       Program Version (ex - 1.0.2-stable or 3.5)
 --categories       <string>      NO        Category Of The Program (Seprated By Comma if multiple, example: cat1,cat2)
 --working-dir      <string>      YES       The working directory to run the program in
 --arch             <string>      NO        Program Architecture (x64 or x32)
