@@ -5,7 +5,7 @@ const process = require('process');
 const path = require('path');
 const fs = require('fs');
 
-const AppImage = require('../src/index');
+const { AppImage, STATUS_CODE } = require('../lib/index');
 
 function argumentNotPassed(arg) {
 	program.outputHelp();
@@ -23,14 +23,15 @@ program
 	.version(pkgJSON.version)
 	.option('--exe <string>', 'Path To The Main Executable')
 	.option('--res <string>', 'Path To The "resource.neu" File')
-	.option('--files <string[]>', 'Path To Other Files To Include (seprated by comma, example: file1,file2,file3)')
+	.option('--files <string>', 'Path To Other Files To Include (seprated by comma, example: file1,file2,file3)')
 	.option('--program-name <string>', 'Name Of The Program')
 	.option('--generic-name <string>', 'Generic Name Of The Program')
 	.option('--description <string>', 'Description Of The Program')
 	.option('--icon <string>', 'Path To The Program Icon')
+	.option('--version <string>', 'Program Version (ex - 0.4.6-beta)')
 	.option('--categories <string>', 'Category Of The Program (Seprated By Comma if multiple, example: cat1,cat2)')
 	.option('--working-dir <string>', 'The working directory to run the program in')
-	.option('--arch <string>', 'Program Architecture (x64 or x32)')
+	.option('--arch <string>', 'Program Architecture (x86_64 or i386)')
 	.option('--out-dir <string>', 'Path to directory to save AppImage in')
 	.option('--log', 'Log the output of AppImage Tool', false)
 	.option('--list-categories', 'List Available Categories.', false);
@@ -70,7 +71,7 @@ if (!fs.existsSync(options.exe)) error(`Executable ${options.exe} Doesn't Exist`
 if (!fs.existsSync(options.res)) error(`Resource File ${options.exe} Doesn't Exist`);
 if (!fs.existsSync(options.icon)) error(`Icon ${options.exe} Doesn't Exist`);
 
-if (!(options.arch == 'x64' || !options.arch == 'x32')) {
+if (!(options.arch == 'x86_64' || !options.arch == 'i386')) {
 	error(`Invalid AppImage Architecture "${options.arch}"`)
 }
 
@@ -100,23 +101,27 @@ for (let i = 0; i < categories.length; i++) {
 	}
 }
 
-const myAppImage = new AppImage();
-myAppImage.executable = options.exe;
-myAppImage.resource = options.res;
-if (options.files) myAppImage.files = files;
-myAppImage.outdir = options.outDir;
-myAppImage.options = {
-	programName: options.programName,
-	description: options.description,
-	categories: categories,
-	icon: path.resolve(options.icon),
-	arch: options.arch,
-	showAppImgToolOutput: options.log
-}
+const myAppImage = new AppImage(
+	options.exe,
+	options.res,
+	options.files ? options.files : null,
+	options.outDir,
+	{
+		programName: options.programName,
+		genericName: options.genericName ? options.genericName : null,
+		description: options.description,
+		categories: categories,
+		icon: options.icon,
+		version: options.version ? options.version : null,
+		arch: options.arch,
+		workingDir: options.workingDir ? options.workingDir : null,
+		showAppImgToolOutput: options.log
+	}
+);
 
 const result = myAppImage.build();
 
-if (result.code != AppImage.code.SUCCESS) {
+if (result.code != STATUS_CODE.SUCCESS) {
 	let msg = ``;
 	let errCodes = Object.values(AppImage.code);
 
